@@ -334,6 +334,7 @@ inpSearch.addEventListener('input', (e)=>{
 
 // ! CREATE START
 async function createCom(){
+
   let  inpCom = document.querySelector(".card-inp-comment")
 if(!inpCom.value.trim()){
   alert("Напишите комментарий")
@@ -353,6 +354,7 @@ inpCom = ""
            
    }).then((res) =>res.json())
    readCom()
+
 }
 
 // ? CREATE END
@@ -360,6 +362,7 @@ inpCom = ""
 
 // ! READ START
 async function readCom(){
+  let  inpCom = document.querySelector(".card-inp-comment")
   let data = await fetch(`${API2}?q=&_page=&_limit=&`).then((res)=>res.json())
   
   console.log(data)
@@ -367,9 +370,8 @@ async function readCom(){
   comments.innerHTML =""
   data.forEach(item => {
     
-    // console.log(item);
     if(inpCom.value !=""){
-      comments.innerHTML += ` <p>NONANE :${item.comm1}</p>`}
+      comments.innerHTML += ` <p><strong>NONANE :</strong>${item.comm1}</p>`}
   })
 }
 readCom()
