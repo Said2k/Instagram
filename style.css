@@ -103,7 +103,7 @@
   margin-top: 5px;
   border-radius: 10px;
 }
-.accordion-header::::after {
+.accordion-header::after {
   content: "\002B";
   position: absolute;
   right: 1rem;
@@ -112,3 +112,53 @@
   content: "\2212";
 }
 /* ? CREATE END */
+.card-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.card {
+height: 650px;
+width: 30%;
+border-radius: 1%;
+box-shadow: 3px 0px 24px -7px black;
+}
+
+.card-user-img{
+  margin-right: 6px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background-image: url(https://media.architecturaldigest.com/photos/57c7003fdc03716f7c8289dd/master/pass/IMG%20Worlds%20of%20Adventure%20-%201.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: 100%; */
+
+}
+.card-user {
+display: flex;
+padding: 6px;
+}
+.card-text{
+  display: flex;
+  padding: 5px;
+
+}
+.card-text h6{
+  margin-right: 5px;
+  margin-top: 2px;
+}
+.card-inp-comment {
+  width: 80%;
+  height: 30px;
+  border: none;
+}
+.card-btn{
+  width: 20%;
+  font-size: 11px;
+  border: none;
+}
+.card-inp-btn{
+  display: flex;
+  border: none;
+}
