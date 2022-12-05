@@ -190,6 +190,7 @@ width: 90%;
 .card-items {
   padding: 5px;
   display: flex;
+  align-items: center;
 }
   .card-edit-delete{
    padding: 5px;
@@ -291,12 +292,19 @@ width: 90%;
 .comments {
   margin-top: 50px;
   border: 1px solid black;
+  border-radius: 6px;
   /* display: flex; */
   width: 50%;
   margin-bottom: 50px;
   padding: 10px;
 
 }
+.comments__block{
+  display: flex;
+  justify-content: space-between;
+
+}
+
 .comments:hover{
   box-shadow: 3px 0px 24px -7px red;
 }
@@ -323,7 +331,7 @@ width: 90%;
   width: 50%;
 }
 }
-@media all and (max-width:425px){
+@media all and (max-width:426px){
   .header-links{
     display: none;
   }
@@ -345,6 +353,19 @@ width: 90%;
   }
   .card-inp-comment{
     font-size: 10px;
+  }
+  .comments__block p, button{
+    font-size: 10px;
+  }
+  .comments__block button {
+    height: 15%;
+  }
+  .edit-icon{
+    margin: 0;
+  }
+  .card-icons img {
+    width: 15px;
+    height: 15px;
   }
 }
 @media all and (max-width:375px){
@@ -391,5 +412,6 @@ width: 90%;
   }
   .container-comments{
     font-style: 10px;
+
   }
 }

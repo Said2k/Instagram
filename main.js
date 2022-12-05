@@ -71,7 +71,9 @@ headerUser.addEventListener("click", ()=>{
   if(logIn == "admin"){
     console.log("fgh");
     section.style.display = "flex"
+  }else if (logIn== "edit"){
     cardEditDel.style.display = "block"
+
   }else if (logIn == "exit"){
     section.style.display = "none"
     cardEditDel.style.display = "none"
@@ -119,17 +121,9 @@ modalBtn.addEventListener("click", ()=>{
    inpImg.value = ""
     inpText.value = ""
   createPost(obj)
+  readPosts()
 })
-let comm =[  {
-  "comm1": "dw",
-  "postId":1,
-  "id": 1
-},
-{
-  "comm1": "dwd",
-  "postId":2,
-  "id": 2
-}]
+
 
 // ? CREATE END
 
@@ -141,7 +135,7 @@ async function readPosts(){
   cardContainer.innerHTML =""
   data.forEach(item => {
     
-    console.log(item);
+    // console.log(item);
       cardContainer.innerHTML += `<div class="card">
       <div class="card-user">
         <div class="card-user-img" style="background-image: url(${item.logo})">
@@ -161,7 +155,7 @@ async function readPosts(){
         <img class="like"
           src="./png-clipart-heart-computer-icons-symbol-heart-love-text-removebg-preview (1).png"
           width="30px"
-          height="25px"
+          height="23px"
           alt="" onclick=" like()"
         />
         <p class="like-num"></p>
@@ -169,7 +163,7 @@ async function readPosts(){
         <img class="direct"
           src="https://cdn-icons-png.flaticon.com/512/2526/2526496.png"
           width="25px"
-          height="20px"
+          height="18px"
           alt=""
         />
       </div>
@@ -366,17 +360,27 @@ async function readCom(){
   let  inpCom = document.querySelector(".card-inp-comment")
   let data = await fetch(`${API2}`).then((res)=>res.json())
   
-  console.log(data)
+  // console.log(data)
   
   comments.innerHTML =""
   data.forEach(item => {
-      comments.innerHTML += ` <p><strong>NONANE :</strong>${item.comm1}</p>`
+      comments.innerHTML += ` <div class="comments__block"><p><strong>NONANE :</strong>${item.comm1}</p> <button class="del-com" onclick="delCom(${item.id})">Delete</button></div>`
   })
   // getComm()
 }
 
 // ? READ END
 
+// ! DELETE START
+
+async function delCom(id){
+  await fetch(`${API2}/${id}`, {
+    method: "DELETE",
+  });
+  readCom();
+}
+
+// ? DELETE END
 
 // ? COMMENT END
 
