@@ -159,7 +159,7 @@ async function readPosts(){
       <div class ="card-icons">
       <div class="card-items">
         <img class="like"
-          src="file:///C:/Users/Admin/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/makers/JS/WEEK%208/lesson%201%20project%20with%20mentor/png-clipart-heart-computer-icons-symbol-heart-love-text-removebg-preview.png"
+          src="./png-clipart-heart-computer-icons-symbol-heart-love-text-removebg-preview (1).png"
           width="30px"
           height="25px"
           alt="" onclick=" like()"
