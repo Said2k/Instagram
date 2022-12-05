@@ -1,0 +1,114 @@
+/* ! HEADER START */
+.container1 {
+  width: 100%;
+  box-shadow: 3px 0px 24px -7px black;
+}
+.header1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+}
+.header-links ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  justify-content: space-between;
+  width: 500px;
+}
+.header-links a {
+  text-decoration: none;
+  color: black;
+}
+#admin {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-image: url(https://icons.veryicon.com/png/o/miscellaneous/yuanql/icon-admin.png);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+.header-search {
+  display: flex;
+  align-items: center;
+}
+.search-txt {
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  padding: 3px;
+  outline: none;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
+}
+.search-btn {
+  width: 33px;
+  height: 33px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.header-search:hover > .search-txt {
+  width: 180px;
+  /* padding: 0 9px; */
+  border: 1px solid black;
+}
+.header-search:hover > .search-btn {
+  background-color: rgb(142, 140, 140);
+}
+.header-user {
+  cursor: pointer;
+}
+/*? Header end */
+
+/* ! CREATE START */
+.section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  font-family: system-ui;
+  display: none;
+}
+.section div {
+  display: flex;
+  flex-direction: column;
+}
+.section__add {
+  width: 30%;
+}
+
+.accordion-header {
+  border: 1px solid black;
+  display: flex;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.accordion-body {
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease-out;
+}
+.accordion-body input {
+  border: 1px solid rgb(133, 132, 132);
+  margin-top: 5px;
+  border-radius: 10px;
+}
+.accordion-header::::after {
+  content: "\002B";
+  position: absolute;
+  right: 1rem;
+}
+.accordion-header .active::after {
+  content: "\2212";
+}
+/* ? CREATE END */
