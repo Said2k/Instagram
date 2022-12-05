@@ -118,7 +118,7 @@
   margin-top: 50px;
 }
 .card {
-height: 650px;
+/* height: 650px; */
 width: 30%;
 border-radius: 1%;
 box-shadow: 3px 0px 24px -7px black;
@@ -129,7 +129,6 @@ box-shadow: 3px 0px 24px -7px black;
   width: 30px;
   height: 30px;
   border-radius: 20px;
-  background-image: url(https://media.architecturaldigest.com/photos/57c7003fdc03716f7c8289dd/master/pass/IMG%20Worlds%20of%20Adventure%20-%201.jpg);
   background-position: center;
   background-repeat: no-repeat;
   /* background-size: 100%; */
