@@ -244,3 +244,33 @@ width: 90%;
 .like {
   border-radius: 20px;
 }
+
+
+
+
+
+
+/* ! Paginate start */
+
+
+.paginate{
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ? Paginate end */
+
+
+
+
+
+
+
+/* ! COMMENT START */
+.comments {
+  margin-top: 50px;
+  border: 1px solid black;
+  /* display: flex; */
+}
+/* ? COMMENT END */

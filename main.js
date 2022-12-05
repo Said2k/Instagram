@@ -1,4 +1,5 @@
 let API = " http://localhost:8000/card"
+let API2 = "http://localhost:8000/comments"
 let  inpLogo = document.querySelector(".section__add-logo")
 let  inpName = document.querySelector(".section__add-name")
 let  inpImg = document.querySelector(".section__add-img")
@@ -7,6 +8,33 @@ let accordionHeader = document.querySelector(".accordion-header")
 
 let headerUser = document.querySelector(".header-user")
 let cardContainer = document.querySelector(".card-container")
+
+// COMMENT
+
+let comments = document.querySelector(".comments") 
+
+
+
+
+
+
+
+// инпут и переменная для пойска
+let inpSearch =document.querySelector(".search-txt")
+let searchValue=inpSearch.value;
+
+//paginate
+let prevBtn=document.querySelector('#prev-btn');
+let nextBtn=document.querySelector('#next-btn');
+let currentPage = 1;
+let limit = 1;
+
+//filter
+let form=document.querySelector("form");
+let category = "all";
+
+
+
 
 
 
@@ -41,6 +69,7 @@ headerUser.addEventListener("click", ()=>{
   let section = document.querySelector(".section")
   let cardEditDel = document.querySelector(".card-edit-delete")
   if(logIn == "admin"){
+    console.log("fgh");
     section.style.display = "flex"
     cardEditDel.style.display = "block"
   }else if (logIn == "exit"){
@@ -91,14 +120,23 @@ modalBtn.addEventListener("click", ()=>{
     inpText.value = ""
   createPost(obj)
 })
-
+let comm =[  {
+  "comm1": "dw",
+  "postId":1,
+  "id": 1
+},
+{
+  "comm1": "dwd",
+  "postId":2,
+  "id": 2
+}]
 
 // ? CREATE END
 
 // ! READ START 
 let page = 0
 async function readPosts(){
-  let data = await fetch(`${API}?q=&_page=&_limit=&`).then((res)=>res.json())
+  let data = await fetch(`${API}?q=${searchValue}&_page=${currentPage}&_limit=${limit}&${category === "all" ? "" : "category=" + category}`).then((res)=>res.json())
   
   cardContainer.innerHTML =""
   data.forEach(item => {
@@ -151,10 +189,12 @@ async function readPosts(){
           class="card-inp-comment"
           type="text"
           placeholder="Добавьте комментарий..."
-        /><button class="card-btn">Опубликовать</button>
+        /><button class="card-btn" onclick="createCom(${item.id})">Опубликовать</button>
+        
       </div>
     </div>`
   })
+  pageTotal()
 }
 readPosts()
 
@@ -169,7 +209,6 @@ let count = 0
 likeBtn.style.background = "red"
 count+=1
 num.innerHTML = `${count}`
-console.log(count);
 
 }
 
@@ -245,6 +284,99 @@ async function deletePost(id) {
 }
 
 //? ======== DELETE END ==============
+
+
+
+
+
+
+
+
+
+
+
+
+// ! paginate start
+let countPage = 1
+async function pageTotal(){
+    let data = await fetch(`${API}?q=${searchValue}`).then((res)=> res.json());
+    // console.log(data.length)
+    countPage = Math.ceil(data.length / limit);
+}
+
+prevBtn.addEventListener('click', ()=>{
+    if(currentPage<=1)return;
+    currentPage--;
+    readPosts();
+});
+nextBtn.addEventListener('click', ()=>{
+    if(currentPage>=countPage)return;
+    currentPage++;
+    readPosts();
+});
+//? paginate end
+
+//! ====================SEARCH START===============
+inpSearch.addEventListener('input', (e)=>{
+  searchValue= e.target.value;
+  readPosts()
+})
+//? ====================SEARCH END==================
+
+
+
+
+
+
+// ! COMMETNT START
+
+
+
+// ! CREATE START
+async function createCom(){
+  let  inpCom = document.querySelector(".card-inp-comment")
+if(!inpCom.value.trim()){
+  alert("Напишите комментарий")
+}
+let objCom = {
+  comm1: inpCom.value,
+}
+inpCom = ""
+
+  
+  await fetch(API2, {
+       method: "POST",
+       headers: {
+           "Content-type": "application/json; charset=utf-8"
+       },
+       body: JSON.stringify(objCom)
+           
+   }).then((res) =>res.json())
+   readCom()
+}
+
+// ? CREATE END
+
+
+// ! READ START
+async function readCom(){
+  let data = await fetch(`${API2}?q=&_page=&_limit=&`).then((res)=>res.json())
+  
+  console.log(data)
+  
+  comments.innerHTML =""
+  data.forEach(item => {
+    
+    // console.log(item);
+    if(inpCom.value !=""){
+      comments.innerHTML += ` <p>NONANE :${item.comm1}</p>`}
+  })
+}
+readCom()
+// ? READ END
+
+
+// ? COMMENT END
 
 
 
