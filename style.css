@@ -135,6 +135,8 @@ margin-top: 80px;
   width: 30px;
   height: 30px;
   border-radius: 20px;
+  border: 1px solid black;
+  background-size: 210%;
   background-position: center;
   background-repeat: no-repeat;
   /* background-size: 100%; */
@@ -161,6 +163,7 @@ width: 90%;
   width: 80%;
   height: 30px;
   border: none;
+ 
 }
 .card-btn{
   width: 20%;
@@ -170,6 +173,8 @@ width: 90%;
 .card-inp-btn{
   display: flex;
   border: none;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 .card-items {
   padding: 5px;
@@ -268,9 +273,15 @@ width: 90%;
 
 
 /* ! COMMENT START */
+.container-comments{
+  display: flex;
+  justify-content: center;
+}
 .comments {
   margin-top: 50px;
   border: 1px solid black;
   /* display: flex; */
+  width: 50%;
+
 }
 /* ? COMMENT END */
