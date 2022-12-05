@@ -1,4 +1,11 @@
 /* ! HEADER START */
+body{
+  /* background-image: url(https://f.hellowork.com/blogdumoderateur/2021/09/instagram-engagement-communaute-e1631290252506.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%; */
+}
+
 .container1 {
   width: 100%;
   box-shadow: 3px 0px 24px -7px black;
@@ -8,8 +15,10 @@
   align-items: center;
   justify-content: space-around;
   height: 100px;
+  z-index: 1;
 }
 .header-links ul {
+
   display: flex;
   flex-direction: row;
   list-style-type: none;
@@ -113,8 +122,10 @@
 }
 /* ? CREATE END */
 .card-container {
+  
   display: flex;
   /* justify-content: space-around; */
+ 
 
   flex-direction: column;
   align-items: center;
@@ -286,4 +297,99 @@ width: 90%;
   padding: 10px;
 
 }
+.comments:hover{
+  box-shadow: 3px 0px 24px -7px red;
+}
 /* ? COMMENT END */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media all and (max-width:768px){
+  .card-text{
+    width: 80%;
+  }
+.card-btn{
+  width: 50%;
+}
+}
+@media all and (max-width:425px){
+  .header-links{
+    display: none;
+  }
+  .card-text p{
+    font-size: 10px;
+  }
+  .card-text h6{
+    font-size: 10px;
+  }
+  .card-btn{
+    font-size: 10px;
+  }
+  .like{
+    width: 60%;
+  }
+  .direct{
+    width: 60%;
+    margin-left: 10px;
+  }
+  .card-inp-comment{
+    font-size: 10px;
+  }
+}
+@media all and (max-width:375px){
+  .card-btn{
+    font-size: 8px;
+  }
+  .like{
+    width: 70%;
+  }
+  .direct{
+    width: 70%;
+    margin-left: 10px;
+  }
+}
+@media all and (max-width:320px){
+  .card-btn{
+   font-size: 5px; 
+  }
+  .card-inp-comment{
+    font-size: 5px;
+  }
+  .card-text p{
+    font-size: 7px;
+  }
+  #next-btn{
+   width: 50px;
+   height: 40px;
+   font-style: 10px;
+  }
+  #prev-btn{
+    width: 50px;
+    height: 40px;
+    font-style: 15px;
+  }
+  img{
+    width: 70%;
+  }
+  .like{
+    width: 60%;
+  }
+  .direct{
+    width: 60%;
+    margin-left: 0px;
+  }
+  .container-comments{
+    font-style: 10px;
+  }
+}

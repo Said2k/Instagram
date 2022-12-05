@@ -333,6 +333,7 @@ inpSearch.addEventListener('input', (e)=>{
 
 
 // ! CREATE START
+readCom()
 async function createCom(){
 
   let  inpCom = document.querySelector(".card-inp-comment")
@@ -342,18 +343,18 @@ if(!inpCom.value.trim()){
 let objCom = {
   comm1: inpCom.value,
 }
-inpCom = ""
 
+
+await fetch(API2, {
+  method: "POST",
+  headers: {
+    "Content-type": "application/json; charset=utf-8"
+  },
+  body: JSON.stringify(objCom)
   
-  await fetch(API2, {
-       method: "POST",
-       headers: {
-           "Content-type": "application/json; charset=utf-8"
-       },
-       body: JSON.stringify(objCom)
-           
-   }).then((res) =>res.json())
-   readCom()
+}).then((res) =>res.json())
+readCom()
+inpCom = ""
 
 }
 
@@ -363,18 +364,17 @@ inpCom = ""
 // ! READ START
 async function readCom(){
   let  inpCom = document.querySelector(".card-inp-comment")
-  let data = await fetch(`${API2}?q=&_page=&_limit=&`).then((res)=>res.json())
+  let data = await fetch(`${API2}`).then((res)=>res.json())
   
   console.log(data)
   
   comments.innerHTML =""
   data.forEach(item => {
-    
-    if(inpCom.value !=""){
-      comments.innerHTML += ` <p><strong>NONANE :</strong>${item.comm1}</p>`}
+      comments.innerHTML += ` <p><strong>NONANE :</strong>${item.comm1}</p>`
   })
+  // getComm()
 }
-readCom()
+
 // ? READ END
 
 
@@ -382,8 +382,11 @@ readCom()
 
 
 
+// async function getComm(){
+//   await fetch(API2).then((res)=>res.json())
 
 
+// }
 
 
 
