@@ -22,7 +22,16 @@ let modalImg =document.querySelector(".section__add-img")
 let modalText = document.querySelector(".section__add-text")
 let modalBtn = document.querySelector(".section__add-btn-add")
 
+//  EDIT INPUT 
 
+let inpEditName = document.querySelector(".window__edit_name");
+let inpEditLogo = document.querySelector(".window__edit_logo");
+let inpEditText = document.querySelector(".window__edit_text");
+let inpEditImg = document.querySelector(".window__edit_img");
+
+let btnEditModal = document.querySelector(".window__edit_btn-save");
+let btnCloseModal = document.querySelector(".window__edit_close")
+let mainModal = document.querySelector(".main-modal")
 
 
 // ! LOG IN START
@@ -30,10 +39,14 @@ let modalBtn = document.querySelector(".section__add-btn-add")
 headerUser.addEventListener("click", ()=>{
   let logIn = prompt("Введите пароль")
   let section = document.querySelector(".section")
+  let cardEditDel = document.querySelector(".card-edit-delete")
   if(logIn == "admin"){
     section.style.display = "flex"
+    cardEditDel.style.display = "block"
   }else if (logIn == "exit"){
     section.style.display = "none"
+    cardEditDel.style.display = "none"
+
   }else{
     alert("Error")
   }
@@ -83,7 +96,7 @@ modalBtn.addEventListener("click", ()=>{
 // ? CREATE END
 
 // ! READ START 
-
+let page = 0
 async function readPosts(){
   let data = await fetch(`${API}?q=&_page=&_limit=&`).then((res)=>res.json())
   
@@ -105,20 +118,27 @@ async function readPosts(){
           alt=""
         />
       </div>
+      <div class ="card-icons">
       <div class="card-items">
-        <img
+        <img class="like"
           src="file:///C:/Users/Admin/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/makers/JS/WEEK%208/lesson%201%20project%20with%20mentor/png-clipart-heart-computer-icons-symbol-heart-love-text-removebg-preview.png"
           width="30px"
           height="25px"
-          alt=""
+          alt="" onclick=" like()"
         />
+        <p class="like-num"></p>
 
-        <img
+        <img class="direct"
           src="https://cdn-icons-png.flaticon.com/512/2526/2526496.png"
           width="25px"
           height="20px"
           alt=""
         />
+      </div>
+      <div class="card-edit-delete">
+      <img class="edit-icon" src="https://cdn-icons-png.flaticon.com/512/1799/1799391.png" width="20px" class="read_del" onclick="deletePost(${item.id})" />
+            <img class="edit-icon" src="https://www.freeiconspng.com/thumbs/edit-icon-png/edit-new-icon-22.png" width="20px" onclick=" editHandle(${item.id})" />
+      </div>
       </div>
       <div class="card-text">
         <h6>${item.name}</h6>
@@ -139,6 +159,92 @@ async function readPosts(){
 readPosts()
 
 // ? READ END
+
+
+// ! LIKE START
+let count = 0
+ function like(){
+  let likeBtn =  document.querySelector(".like")
+  let num = document.querySelector(".like-num")
+likeBtn.style.background = "red"
+count+=1
+num.innerHTML = `${count}`
+console.log(count);
+
+}
+
+// ? LIKE END
+
+
+ // ! =========== EDIT START ==========
+
+ async function editPosts(id,editeObj){
+  if (!inpEditName.value.trim() 
+  || !inpEditLogo.value.trim()
+   || !inpEditImg.value.trim()
+    || !inpEditText.value.trim() ){
+      alert("Заполните поля!")
+      return;
+  }
+  await fetch(`${API}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(editeObj),
+
+  });
+  readPosts()
+}
+ 
+let editId = ""
+async function editHandle(id){
+  mainModal.style.display = "block"
+   let data = await fetch(`${API}/${id}`).then((res)=>res.json())
+  // console.log(data);
+  inpEditName.value=data.name
+  inpEditLogo.value = data.logo
+  inpEditImg.value=data.img
+  inpEditText.value = data.text
+  editId = data.id;
+}
+
+btnEditModal.addEventListener("click",()=>{
+  let editObj = {
+    name: inpEditName.value,
+    logo: inpEditLogo.value,
+    img: inpEditImg.value,
+    text: inpEditText.value,
+  }
+  console.log(editObj);
+  editPosts(editId, editObj)
+  mainModal.style.display = "none"
+  // readProducts()
+})
+
+
+btnCloseModal.addEventListener("click",()=>{
+  mainModal.style.display = "none"
+})
+
+
+//   ? ============== EDIT END ==========
+
+
+
+
+
+
+//! =============== DELETE START ===========
+
+async function deletePost(id) {
+  await fetch(`${API}/${id}`, {
+    method: "DELETE",
+  });
+  readPosts();
+}
+
+//? ======== DELETE END ==============
 
 
 
